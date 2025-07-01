@@ -28,6 +28,7 @@ urlpatterns = [
 
     #new path
     path('api/users/', include('users.urls')),
+    path('api/departments/', include('departments.urls')),
 
     # JWT Auth endpoints
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
