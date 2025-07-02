@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Department(models.Model):
     parent = models.ForeignKey(
@@ -33,6 +34,22 @@ class Department(models.Model):
         default=True,
         verbose_name="Is Active",
         help_text="Uncheck to deactivate the department without deleting it."
+    )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='departments_created',
+        verbose_name="Created By"
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='departments_updated',
+        verbose_name="Updated By"
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
